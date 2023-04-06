@@ -20,6 +20,11 @@
     {% for event in event_list %}
     <p> 
         {{ event.date }} {{ event.event_name }} {{ event.guest_num }} {{ event.room_location }} {{ event.description }} {{ event.recurring}}
+        {% if event.recurring %}
+            <span> &#9989; </span>
+        {% else %}
+            <span> &#10060; </span>
+        {% endif %}
     </p>
 {% endfor %}
 {% endblock %}
