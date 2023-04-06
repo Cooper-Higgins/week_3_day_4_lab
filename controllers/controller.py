@@ -7,7 +7,11 @@ from models.event import Event
 def index():
     return render_template("index.html", event_list = events)
 
-@app.route('/events', methods=['POST'])
+@app.route('/events/create_event')
+def create_event():
+    return render_template('create_event.html')
+
+@app.route('/events/create_event', methods=['POST'])
 def add_event():
     event_name = request.form['event_name']
     date = request.form['event_date']
@@ -18,4 +22,4 @@ def add_event():
     new_event = Event(event_name, date, guest_num, room_location, description, recurring)
     add_new_event(new_event)
 
-    return render_template('index.html', event_list=events)
+    return render_template('create_event.html', event_list=events, message = True)
